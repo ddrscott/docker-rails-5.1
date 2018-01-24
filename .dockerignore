@@ -1,0 +1,7 @@
+.git/
+.gitignore
+db/
+node_modules/
+log/
+tmp/
+README.rdoc
