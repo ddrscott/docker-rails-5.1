@@ -1,27 +1,29 @@
-version: '3'
+version: '3.4'
+volumes:
+  bundles:
+  pg-data:
 services:
   app:
     build: .
-    command: rails server -p 3000 -b '0.0.0.0'
+    command: rails server -p 3000 -b 0.0.0.0
     depends_on:
-      - postgres
+      - db
     environment:
       RAILS_ENV: development
-      DATABASE_URL: postgres:///root
+      DATABASE_URL: postgres://postgres@postgres-9.6/dev
     links:
-      - postgres
+      - db
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-  postgres:
+      - bundles:/usr/local/bundle
+
+  db:
     container_name: postgres-9.6
     image: postgres:9.6
     environment:
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD:
-    ports:
-      - "5432"
     volumes:
-      - ./tmp/postgres:/var/lib/postgresql/data
-
+      - pg-data:/var/lib/postgresql/data

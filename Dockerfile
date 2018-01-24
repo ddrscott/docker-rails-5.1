@@ -13,7 +13,6 @@ RUN rm -rf /var/cache/apk/*
 RUN mkdir /app
 WORKDIR /app
 
-COPY Gemfile ./Gemfile
-COPY Gemfile.lock ./Gemfile.lock
-
-RUN bundle install --jobs 20 --retry 5
+# COPY Gemfile ./Gemfile
+# COPY Gemfile.lock ./Gemfile.lock
+# RUN bundle install --jobs 20 --retry 5
